@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'; import { faqs } from '../data/catalog';
+const structuredData = { '@context':'https://schema.org', '@type':'FAQPage', mainEntity:faqs.map(([name,text]) => ({'@type':'Question',name,acceptedAnswer:{'@type':'Answer',text}})) };
+---
+<BaseLayout title="Copper vessel FAQ & care | Tamakala" description="Answers about The Monolith Vessel, copper care, shipping, and tracking." current="/faq" structuredData={structuredData}>
+  <section class="page-pad bg-ink py-20 text-white lg:py-28"><div class="content-grid"><p class="eyebrow text-copper">Care & answers</p><h1 class="display mt-5 text-6xl sm:text-7xl">Good questions<br/><em>deserve clear answers.</em></h1><p class="mt-7 max-w-xl leading-7 text-white/65">A practical guide to living with The Monolith Vessel.</p></div></section>
+  <section class="page-pad py-16 lg:py-24"><div class="content-grid max-w-4xl"><div class="border-t border-ink/15">{faqs.map(([q,a]) => <details class="border-b border-ink/15 py-6"><summary class="flex cursor-pointer items-center justify-between gap-6 text-lg font-medium">{q}<svg class="size-5 shrink-0 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14"/></svg></summary><p class="max-w-2xl pt-5 leading-7 text-ink/65">{a}</p></details>)}</div><div class="mt-12 border-l-2 border-copper bg-white/40 p-6"><p class="eyebrow text-copper-dark">A note on wellness</p><p class="mt-3 max-w-2xl leading-7 text-ink/70">We share material and care information, not medical advice. Please rely on a qualified health professional for questions about your individual needs.</p></div></div></section>
+</BaseLayout>

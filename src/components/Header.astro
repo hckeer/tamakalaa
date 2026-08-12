@@ -1,0 +1,24 @@
+---
+const { current = '' } = Astro.props;
+const links = [
+  ['Shop', '/shop'], ['Our craft', '/journal'], ['Track order', '/track-order'], ['FAQ', '/faq'],
+];
+---
+<header class="sticky top-0 z-40 border-b border-white/10 bg-ink/95 text-white backdrop-blur-xl">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 lg:px-8">
+    <a href="/" class="font-sans text-sm font-semibold tracking-[0.24em]" aria-label="Tamakala home">TAMAKALA</a>
+    <nav class="hidden items-center gap-7 text-xs tracking-[0.12em] text-white/70 lg:flex" aria-label="Main navigation">
+      {links.map(([label, href]) => <a class:list={{ 'text-copper': current === href, 'hover:text-white': current !== href }} href={href}>{label}</a>)}
+    </nav>
+    <div class="flex items-center gap-3">
+      <button class="region-toggle" type="button" data-region-toggle aria-haspopup="true" aria-expanded="false">NEP <span aria-hidden="true">⌄</span></button>
+      <a href="/cart" class="relative grid size-10 place-items-center border border-white/20 text-sm transition hover:border-copper hover:text-copper" aria-label="View cart">
+        <span aria-hidden="true">Bag</span><span data-cart-count class="absolute -right-1 -top-1 grid size-4 place-items-center rounded-full bg-copper text-[9px] text-ink">0</span>
+      </a>
+    </div>
+  </div>
+  <div data-region-menu hidden class="absolute right-5 top-[4.5rem] w-52 border border-white/15 bg-ink p-2 text-xs shadow-2xl lg:right-8">
+    <button class="region-option" type="button" data-region="nepal">Nepal <span>NPR</span></button>
+    <button class="region-option" type="button" data-region="international">International <span>USD</span></button>
+  </div>
+</header>
